@@ -14,7 +14,7 @@ job("task6-job1") {
 
   
   triggers {
-    githubPush()
+    pullscm(* * * * *)
   }
   
   wrappers {
