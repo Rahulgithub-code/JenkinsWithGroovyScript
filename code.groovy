@@ -31,6 +31,7 @@ job("task6-job2"){
 		else
 		    	sudo kubectl run html --image rahulwithdocker/httpd-server:v1
              		sudo kubectl expose pods html --type=NodePort --port=80 
+	fi		
 			
     ''')
   }
@@ -45,7 +46,7 @@ job("task6-job3")
   description("Testing env")
   steps{
     shell('''
-status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.101:30428)
+status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.101:30915)
 if [[ $status == 200 ]]
 then
     echo "Running"
