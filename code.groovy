@@ -24,8 +24,14 @@ job("task6-job1") {
 job("task6-job2"){
   description("This job create Kubernetes os  according code (If code contain html syntax than it will create html interpreter or if it has php code than it create php interpreter)")
   steps {
-    shell('''sudo kubectl run os --image rahulwithdocker/httpd-server:v1
-             sudo kubectl expose pods os --type=NodePort --port=80     
+    shell('''if sudo kubectl get pods | grep html
+    		then
+    	     		sudo kubectl apply html --image rahulwithdocker/httpd-server:v1
+             		sudo kubectl expose pods html --type=NodePort --port=80 
+		else
+		    	sudo kubectl run html --image rahulwithdocker/httpd-server:v1
+             		sudo kubectl expose pods html --type=NodePort --port=80 
+			
     ''')
   }
   
