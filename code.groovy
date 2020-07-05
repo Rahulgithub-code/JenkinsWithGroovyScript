@@ -14,7 +14,7 @@ job("task6-job1") {
 
   
   triggers {
-    cron('H */4 * * 1-5')
+    pollSCM('* * * * *')
   }
   
   wrappers {
