@@ -26,7 +26,7 @@ job("task6-job2"){
   steps {
     shell('''if sudo kubectl get pods | grep html
     		then
-    	     		sudo kubectl apply html --image rahulwithdocker/httpd-server:v1 -l app=html
+    	     		sudo kubectl apply --image rahulwithdocker/httpd-server:v1 -l app=html
              		sudo kubectl expose pods html --type=NodePort --port=80 
 		else
 		    	sudo kubectl run html --image rahulwithdocker/httpd-server:v1 -l app=html
