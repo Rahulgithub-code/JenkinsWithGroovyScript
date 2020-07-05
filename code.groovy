@@ -8,6 +8,10 @@ job("task6-job1") {
   steps {
     shell('sudo cp -vrf * /root/task6')
   }
+  triggers {
+        		upstream('Groovy_Seed_GitHub', 'SUCCESS')
+}
+
   
   triggers {
     githubPush()
