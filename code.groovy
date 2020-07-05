@@ -26,10 +26,10 @@ job("task6-job2"){
   steps {
     shell('''if sudo kubectl get pods | grep html
     		then
-    	     		sudo kubectl apply html --image rahulwithdocker/httpd-server:v1
+    	     		sudo kubectl apply html --image rahulwithdocker/httpd-server:v1 -l app=html
              		sudo kubectl expose pods html --type=NodePort --port=80 
 		else
-		    	sudo kubectl run html --image rahulwithdocker/httpd-server:v1
+		    	sudo kubectl run html --image rahulwithdocker/httpd-server:v1 -l app=html
              		sudo kubectl expose pods html --type=NodePort --port=80 
 	fi		
 			
@@ -47,7 +47,7 @@ job("task6-job3")
   steps{
     shell('''
 status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.101:30915)
-if [[ $status == 200 ]]
+if [[ $status == 000 ]]
 then
     echo "Running"
     exit 0
