@@ -5,6 +5,10 @@ job("task6-job1") {
     github('Rahulgithub-code/JenkinsWithGroovyScript','master')
   }
   
+  steps {
+    shell('sudo cp -vrf * /root/task6')
+  }
+  
   triggers {
     githubPush()
   }
