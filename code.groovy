@@ -14,7 +14,7 @@ job("task6-job1") {
 
   
   triggers {
-    scm('H */4 * * 1-5')
+    scm('* * * * *')
   }
   
   wrappers {
