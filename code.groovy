@@ -14,7 +14,7 @@ job("task6-job1") {
 
   
   triggers {
-    pollSCM('H */4 * * 1-5')
+    scm('H */4 * * 1-5')
   }
   
   wrappers {
