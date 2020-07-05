@@ -33,3 +33,44 @@ job("task6-job2"){
         		upstream('task6-job1', 'SUCCESS')
   }
 }
+
+job("task6-job3")
+{
+  description("Testing env")
+  steps{
+    shell('''
+status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.101:30428)
+if [[ $status == 200 ]]
+then
+    echo "Running"
+    exit 0
+else
+     exit 1
+fi
+     ''')
+  }
+  
+  triggers {
+        upstream('task6-job2', 'SUCCESS')
+  }
+  
+  publishers {
+        extendedEmail {
+            recipientList('rahulkr.mits@gmail.com')
+            defaultSubject('Job status')
+          	attachBuildLog(attachBuildLog = true)
+            defaultContent('Status Report')
+            contentType('text/html')
+            triggers {
+                always {
+                    subject('build Status')
+                    content('Body')
+                    sendTo {
+                        developers()
+                        recipientList()
+                    }
+		}
+	    }
+	}
+    }
+}
